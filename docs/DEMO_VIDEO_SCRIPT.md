@@ -1,19 +1,151 @@
-# Demo video script (target length: about 13 minutes; the requirement is 7 to 20 minutes)
 
-How to record on Windows: install OBS Studio (free) or use Xbox Game Bar (Windows key + G -> Record). Record your screen with your voice.
-Have these open before you start: the Tableau Public link, the Streamlit app (run `streamlit run app\streamlit_app.py`),
-your GitHub repo, and `reports\validation_report.md`. Speak slowly. Total of about 1,800 spoken words.
+# PhonePe Pulse Data Visualization and Exploration
+## Demo Video Script
+**Target duration:** 13–14 minutes
 
-| Time | What to show | What to say (in your own words) |
-|---|---|---|
-| 0:00-0:45 | Title slide or the dashboard | Your name, the Sclaria Data Analyst Internship, the project: PhonePe Pulse Data Visualization and Exploration. The goal: turn PhonePe payment data into an interactive dashboard with insights. |
-| 0:45-2:15 | The brief and the six csv files | The six tables (aggregated, map, top; transactions and users), 36 states and union territories, 2018 Q1 to 2022 Q4. They have different grains: state-quarter-type, state-quarter-brand, district-quarter, top lists. |
-| 2:15-4:30 | `build_master_table.py` and `master_long.csv` | Schema validation first (expected columns and types). Cleaning: state names, the " district" suffix, Delhi's "central district" vs "central delhi" (same numbers). The single merged table has 51,442 rows with a `source_table` column. District x quarter table joins transactions and users. Users are a running total, so they are never added across quarters. |
-| 4:30-6:00 | `reports\validation_report.md` | How validation is defined: 22 checks, each tests one rule on many units. 20 of 22 pass fully; overall pass rate 99.998%. The two exceptions are documented limitations (brand data ends 2022 Q1; 4 map_user rows). Be clear that this is internal consistency, not accuracy against the real world. |
-| 6:00-9:00 | Tableau Public dashboard | The filled map of India, the KPI cards (12.1M crore, 71.7B payments), the trend line, top 10 states, payment types. Demo the 10 dropdowns: Year, Quarter, Half-year, Period, Phase, State, State Tier, Region, Transaction Type, Metric. Show Region = South, then Year = 2020. Mention the COVID flattening. |
-| 9:00-10:30 | Growth page or `outputs\yearly_growth.csv` | YoY: +287%, +133%, +136%, +86%. CAGR 2018 to 2022: value 150.8%, transactions 145.6%, users 43.5%. Transactions per user rose from 10.6 to 90.6. |
-| 10:30-12:00 | Streamlit app | 12 dropdowns, KPI cards, map, top states, top users by district, YoY and CAGR tab, data quality tab. Show one filter change and one top-users chart. |
-| 12:00-13:30 | Insights and recommendation | Peer-to-peer is 41% of payments but 80% of value; merchant payments are 46% of payments but 16% of value. Telangana, Maharashtra, Karnataka lead. Recommendation: user growth slowed to +23.6% in 2022 while transactions per user keep rising, so focus on activation. Gujarat, West Bengal, Kerala and Uttar Pradesh have big user bases but below-median engagement; lifting them to the median (58 transactions per user) is worth about 525 million transactions and about Rs 89,000 crore a year (a scenario, not a forecast). |
-| 13:30-14:30 | Limitations and close | Region and State Tier are my own groupings; transaction value is not PhonePe's revenue; brand data ends 2022 Q1; district-level map and a choropleth are future work. Thank the viewer. |
+### Before Recording
 
-Tips: do one practice run first; do not read word for word; if you make a mistake, keep going and fix it in the next sentence.
+Open the following:
+- GitHub project repository
+- Tableau Public dashboard
+- Streamlit application
+- reports/validation_report.md
+
+Record your screen with OBS Studio or Windows Xbox Game Bar (Windows + G).
+
+Speak clearly and demonstrate the actual project.
+
+---
+
+### 1. Introduction (0:00–0:45)
+
+Hello everyone. My name is Hasini Bavirisetty.
+
+I am presenting my PhonePe Pulse Data Visualization and Exploration project, completed as part of my Sclaria Data Analyst Internship.
+
+The objective of this project is to analyze digital payment trends across India using PhonePe Pulse data and develop interactive dashboards that communicate meaningful insights.
+
+### 2. Dataset Overview (0:45–2:15)
+
+The project uses PhonePe Pulse datasets covering 2018 Q1 to 2022 Q4 across 36 states and union territories.
+
+The datasets include:
+- Aggregated transactions
+- Aggregated users
+- Map transactions
+- Map users
+- Top transactions
+- Top users
+
+These datasets contain information at different levels, including state, district, quarter, payment category and brand.
+
+### 3. Data Processing and Integration (2:15–4:30)
+
+I used Python and Pandas for data cleaning, processing and integration.
+
+The build_master_table.py script validates the expected schemas, standardizes state and district names, and combines the source datasets.
+
+Special attention was given to district-name inconsistencies, including Delhi district aliases.
+
+The merged master_long table contains 51,442 rows and includes a source_table column to identify the original dataset.
+
+A separate district-quarter table combines transaction and user information.
+
+Registered users represent cumulative totals, so they are not added across quarters.
+
+### 4. Data Validation (4:30–6:00)
+
+I performed 22 validation checks to assess data quality and consistency.
+
+According to the validation report:
+- 19 out of 22 checks passed completely.
+- The overall unit pass rate was 99.972%.
+- 250,204 out of 250,273 tested units passed.
+
+The validation target of 80% was achieved.
+
+There are three non-passing checks that need to be understood:
+
+1. Aggregated transaction reconciliation has a 91.11% pass rate.
+2. Aggregated user data covers only 17 of the 20 quarters.
+3. Four Arunachal Pradesh map-user records have no corresponding map-transaction records.
+
+These limitations are documented in the validation report.
+
+The validation measures internal consistency and does not establish accuracy against external ground truth.
+
+### 5. Tableau Dashboard Demonstration (6:00–9:00)
+
+Now I will demonstrate the interactive Tableau Public dashboard.
+
+The dashboard provides an overview of digital payment activity across India.
+
+It includes:
+- KPI cards
+- Geographic visualization
+- Transaction trends
+- Top-performing states
+- Payment category analysis
+
+The dashboard provides filters for year, quarter, half-year, period, phase, state, state tier, region, transaction type and metric.
+
+I will demonstrate how selecting a region and year changes the visualizations.
+
+The dashboard helps users compare payment activity across states and time periods.
+
+[Tableau Public Dashboard](https://public.tableau.com/app/profile/hasini.bavirisetty/viz/PhonePePulseDashboard_)
+
+### 6. Growth Analysis (9:00–10:30)
+
+The project also examines year-over-year growth and compound annual growth rates.
+
+The analysis shows strong growth in digital payment activity during the study period.
+
+The calculated CAGR values are:
+- Transaction value: 150.8%
+- Transaction count: 145.6%
+- Registered users: 43.5%
+
+Transactions per user increased from approximately 10.6 to 90.6.
+
+These findings demonstrate the expansion of digital payments and increasing engagement.
+
+### 7. Streamlit Application (10:30–12:00)
+
+In addition to Tableau, I developed a Streamlit application using Python.
+
+The application provides interactive filters, KPI cards, geographic analysis, top-state comparisons, district-level user analysis, growth metrics and data-quality information.
+
+I will demonstrate a filter selection and show how the visualizations respond.
+
+### 8. Key Insights and Recommendations (12:00–13:30)
+
+The analysis highlights differences between payment categories.
+
+Peer-to-peer payments account for approximately 41% of transactions and 80% of transaction value.
+
+Merchant payments account for approximately 46% of transactions and 16% of transaction value.
+
+Telangana, Maharashtra and Karnataka are among the leading states.
+
+One important observation is that user growth slowed while transactions per user continued to increase.
+
+Therefore, a useful business recommendation is to focus on improving user activation and engagement.
+
+The analysis also identifies opportunities to improve engagement in Gujarat, West Bengal, Kerala and Uttar Pradesh.
+
+The estimated opportunity of approximately 525 million additional transactions and Rs 89,000 crore in transaction value is a scenario based on reaching median engagement, not a forecast.
+
+### 9. Limitations and Conclusion (13:30–14:30)
+
+This project has certain limitations.
+
+- The available brand dataset ends in 2022 Q1.
+- Some district-level records have reconciliation differences.
+- Region and state-tier classifications are analytical groupings.
+- Transaction value should not be interpreted as PhonePe revenue.
+- Additional district-level visualizations can be developed in the future.
+
+To conclude, this project helped me apply Python, Pandas, SQL concepts, data analysis and visualization techniques to a real-world digital payments dataset.
+
+Thank you for watching my project demonstration.
