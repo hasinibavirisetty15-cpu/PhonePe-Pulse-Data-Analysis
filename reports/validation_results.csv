@@ -1,0 +1,23 @@
+group,check,units_tested,units_passed,pass_rate,status,note
+Schema,Expected columns present in every table,6,6,100.0,PASS,
+Schema,Expected data types in every table,6,6,100.0,PASS,
+Row quality,No missing values,51442,51442,100.0,PASS,
+Row quality,No duplicate rows on the natural key,51442,51442,100.0,PASS,
+Row quality,"Valid ranges (year 2018-2022, quarter 1-4, counts and amounts > 0)",51442,51442,100.0,PASS,
+Coverage,Same 36 states in every table,6,6,100.0,PASS,
+Coverage,All 20 quarters (2018 Q1 - 2022 Q4) present,6,5,83.33,WARN,aggregated_user covers only 17 of 20 quarters (ends 2022 Q1) - brand charts stop there
+Reconciliation,"aggregated_transaction = sum of map_transaction (counts and amount, per state-quarter)",720,656,91.11,FAIL,
+Reconciliation,"aggregated_user total = sum of map_user (per state-quarter, overlapping quarters)",612,612,100.0,PASS,
+Reconciliation,Brand shares add up to 100% (per state-quarter),612,612,100.0,PASS,
+Reconciliation,top_transaction rows match map_transaction (same counts and amount),5920,5920,100.0,PASS,Delhi's 'central delhi' (top tables) and 'central district' (map tables) are unified by an alias
+Reconciliation,top_user rows match map_user (same registered users),5920,5920,100.0,PASS,
+Reconciliation,Every map_user row also exists in map_transaction,14640,14636,99.97,WARN,4 Arunachal Pradesh rows (Anjaw 2018 Q1; Shi Yomi 2018 Q1-Q3) have users but no transactions
+Logic,Registered users never fall from one quarter to the next (running total),684,684,100.0,PASS,
+Logic,Top lists hold at most 10 rows per state-quarter,720,720,100.0,PASS,
+Merged table,master_long has one row for every source row,1,1,100.0,PASS,
+Merged table,master_long has the required columns,1,1,100.0,PASS,
+Merged table,"No missing key fields in master_long (source_table, state, region, year, quarter)",51442,51442,100.0,PASS,
+Merged table,Counts and amounts in master_long equal the original files (3 tables x 2 measures),6,6,100.0,PASS,
+Merged table,master_district_quarter has no duplicate district-quarter rows,14640,14640,100.0,PASS,
+Merged table,"master_district_quarter totals equal the original files (counts, amount, users)",3,3,100.0,PASS,
+Merged table,All top_transaction and top_user rows were matched into master_district_quarter,2,2,100.0,PASS,

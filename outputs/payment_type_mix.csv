@@ -1,0 +1,6 @@
+trans_type,trans_counts,share_of_transactions_pct,share_of_value_pct,avg_txn_value_rs
+Peer-to-peer payments,29091363831.0,40.56,80.11,3343.29
+Merchant payments,33126351502.0,46.19,15.84,580.57
+Recharge & bill payments,9241133229.0,12.88,3.91,513.87
+Others,193737980.0,0.27,0.09,591.38
+Financial Services,71140778.0,0.1,0.04,695.95
