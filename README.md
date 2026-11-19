@@ -1,73 +1,196 @@
 # PhonePe Pulse Data Visualization and Exploration
 
-An interactive geo-visualization dashboard built in **Tableau Public** on PhonePe Pulse digital-payments data (2018 Q1 – 2022 Q4).
-Project for the **Sclaria Data Analyst Internship**.
+**Data Analyst Internship Project | Sclaria | November 2026**
 
-## Live dashboard
+**Author:** Bavirisetty Hasini
 
-**[Open the dashboard on Tableau Public](https://public.tableau.com/app/profile/hasini.bavirisetty/viz/PhonePePulseDashboard_17947499605220/PhonePePulseDataDashboard)**
+An end-to-end data analytics project exploring PhonePe Pulse digital payment trends across India from 2018 Q1 to 2022 Q4. The project combines Python-based data processing, KPI analysis, data validation, an interactive Streamlit dashboard, and a Tableau Public visualization.
 
-![Dashboard overview](screenshots/dashboard.png)
+## Project links
 
-## What the dashboard shows
+- **Tableau Public Dashboard:** https://public.tableau.com/app/profile/hasini.bavirisetty/viz/PhonePePulseDashboard_17947499605220/PhonePePulseDataDashboard
+- **GitHub Repository:** https://github.com/hasinibavirisetty15-cpu/PhonePe-Pulse-Data-Analysis
 
-| Visual | What it answers |
-|---|---|
-| Filled map of India | Which states move the most money? (colour = selected metric) |
-| KPI cards | Total transaction value (12.1M Cr) and total payments (71.7B) |
-| Trend line | How transaction value grew quarter by quarter, 2018–2022 |
-| Top States bar chart | Top 10 states by transaction value |
-| Types bar chart | Payment categories (merchant, peer-to-peer, recharge & bills, ...) |
+## Project objectives
 
-### 10 dropdown filters
+- Analyze digital transaction trends across Indian states and districts.
+- Measure transaction value, transaction volume, and user growth.
+- Identify leading states, districts, and payment categories.
+- Calculate year-on-year growth and compound annual growth rates (CAGR).
+- Explore user engagement and regional differences.
+- Build interactive dashboards for data exploration.
+- Validate data consistency and document limitations.
 
-Year, Quarter, Half-year, Period, Phase (Pre-COVID / COVID period / Post-COVID), State, State Tier (High / Medium / Low), Region, Transaction Type, and a **Metric** switch (Amount in crore vs. Transactions).
+## Technology stack
 
-## Dataset
+- Python
+- Pandas
+- Streamlit
+- Plotly
+- Tableau Public
+- CSV datasets
+- Git and GitHub
 
-- Source: the pre-processed PhonePe Pulse files provided with the project brief (aggregated transactions, aggregated users, map and top tables).
-- Coverage: 36 states and union territories, 20 quarters (2018 Q1 to 2022 Q4).
-- `data/pp_dashboard.csv` is the file loaded into Tableau (3,594 rows, built from the aggregated transaction table).
-- Amounts in the raw data are in rupees; the dashboard uses crore (1 crore = 10,000,000).
+## Dataset overview
 
-## How it was built
+The analysis covers:
 
-1. **Cleaned the data with Python (pandas)** – `scripts/prepare_data.py`:
-   - fixed state names (`andaman-&-nicobar-islands` -> `Andaman and Nicobar Islands`) so the map recognises every state;
-   - added `period`, `quarter_start` (a real date), `amount_cr`, and a `country` column for the map;
-   - added grouping columns used as filters: `region`, `state_tier`, `half`, `phase`.
-2. **Loaded the CSV into Tableau Public** and set geographic roles (country, state/province).
-3. **Built five sheets** (Map, Trend, Top States, Types, two KPI cards) and combined them in one dashboard with 10 dropdowns.
-4. **Published** to Tableau Public for a live, shareable link.
+- 36 Indian states and union territories.
+- 20 quarters from 2018 Q1 to 2022 Q4.
+- Aggregated transactions and users.
+- State-level and district-level transaction and user information.
+- Top transaction and user statistics.
 
-## Key insights
+The project uses six PhonePe Pulse source datasets.
 
-- **Strong growth:** yearly transaction value grew from about ₹1.6 lakh crore (2018) to about ₹64 lakh crore (2022), a CAGR of about **151%**. Year-on-year growth was +287% in 2019, +133% in 2020, +136% in 2021 and +86% in 2022: still strong, but slowing as the base gets larger.
-- **COVID effect:** the trend line flattens in early 2020 (lockdown period) and then rises steeply.
-- **Peer-to-peer carries the money, merchants carry the volume:** peer-to-peer is about 41% of payments but about 80% of the value; merchant payments are about 46% of payments but only about 16% of the value.
-- **Average payment size** rose from about ₹1,503 (2018) to about ₹1,836 (2020), then fell to about ₹1,635 (2022), consistent with small merchant payments growing fastest.
-- **Concentration:** Telangana (13.6%), Maharashtra (12.2%), Karnataka (11.4%), Andhra Pradesh (9.5%) and Rajasthan (7.5%) together account for about 54% of all value in this dataset.
-- **Fast-growing smaller states:** Andaman and Nicobar Islands, Manipur and Assam show the highest growth from 2019 to 2022 (from small starting bases).
-- **Users:** registered users in the dataset grew from about 47 million (2018 Q1) to about 434 million (2022 Q4).
-- **Seasonality:** Q4 is the busiest quarter overall and Q1 the quietest.
+## Project structure
 
-## Notes and limitations
-
-- Region and State Tier are my own groupings for filtering; they are not part of the PhonePe data.
-- Telangana ranks above Maharashtra by value in this dataset; the dashboard reports what the data shows.
-- Registered users are a running total per quarter, so they should never be summed across quarters.
-- Brand (device) data in the aggregated user table ends at 2022 Q1.
-- Possible next steps: a users and engagement page, a district-level view, and growth-rate KPI cards.
-
-## Repository structure
-
+```text
+PhonePe-Pulse-Data-Analysis/
+│
+├── app/
+│   ├── streamlit_app.py
+│   └── data_access.py
+│
+├── data/
+│   ├── master_long.csv
+│   ├── master_district_quarter.csv
+│   └── pp_dashboard.csv
+│
+├── docs/
+│   ├── DEMO_VIDEO_SCRIPT.md
+│   ├── HOW_TO_RUN.md
+│   └── README_additions.md
+│
+├── outputs/
+│   ├── KPI and growth summaries
+│   ├── payment type analysis
+│   ├── district and state rankings
+│   └── recommendation and seasonality outputs
+│
+├── reports/
+│   ├── PhonePe_Pulse_Project_Report.pdf
+│   ├── validation_report.md
+│   ├── validation_results.csv
+│   └── figures/
+│       └── dashboard screenshots
+│
+├── scripts/
+│   ├── build_master_table.py
+│   ├── compute_kpis.py
+│   ├── validate_data.py
+│   ├── prepare_data.py
+│   └── form_pay_common.py
+│
+├── README.md
+└── requirements.txt
 ```
-data/pp_dashboard.csv        data loaded into Tableau
-scripts/prepare_data.py      cleaning and feature script (Python, pandas)
-screenshots/                 dashboard screenshots
-README.md
+
+## Interactive Streamlit dashboard
+
+The Streamlit application provides five main sections:
+
+1. **Overview:** Overall KPIs, transaction distribution, state rankings, and quarterly trends.
+2. **Growth:** Year-on-year growth and CAGR analysis.
+3. **Users and Engagement:** Registered users and transaction engagement patterns.
+4. **Top Districts:** District-level transaction and user rankings.
+5. **Data Quality:** Validation results and data-quality observations.
+
+The dashboard includes interactive filters for exploring the dataset.
+
+## Key findings
+
+- Total transaction value in the analyzed dataset: approximately ₹12,140,593 crore.
+- Total transaction volume: approximately 71.7 billion transactions.
+- Transaction value increased from approximately ₹162,305 crore in 2018 to ₹6,426,633 crore in 2022.
+- Transaction value CAGR: approximately 150.8%.
+- Registered users increased from approximately 102.3 million at the end of 2018 to 433.9 million at the end of 2022.
+- Registered-user CAGR: approximately 43.5%.
+- Telangana, Maharashtra, Karnataka, Andhra Pradesh, and Rajasthan were among the leading states by transaction value.
+- Peer-to-peer payments accounted for approximately 80.1% of transaction value, while merchant payments represented approximately 46.2% of transaction volume.
+
+*Transaction value represents the value of payments processed in the dataset, not PhonePe's revenue.*
+
+## Data validation
+
+The validation process performed 22 checks.
+
+- Fully passed checks: 19 out of 22.
+- Overall unit pass rate: 99.972% (250,204 out of 250,273 units).
+- Target validation threshold: 80% — met.
+
+### Data-quality observations
+
+- Aggregated transaction reconciliation against map transaction data passed for 656 of 720 state-quarter comparisons (91.11%).
+- Aggregated user data covers 17 of the 20 quarters.
+- Four map-user rows did not have matching map-transaction rows.
+
+These differences are documented rather than silently excluded. Refer to the validation report in `reports/` for details.
+
+## Installation and execution
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/hasinibavirisetty15-cpu/PhonePe-Pulse-Data-Analysis.git
+cd PhonePe-Pulse-Data-Analysis
 ```
+
+### 2. Install dependencies
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 3. Run the Streamlit dashboard
+
+```bash
+python -m streamlit run app/streamlit_app.py
+```
+
+The dashboard will open in your browser.
+
+### 4. Rebuild analysis outputs
+
+The processing scripts require the original six source CSV datasets in the expected `data/raw/` location.
+
+After placing those source files there, run the scripts from the project root in the documented order:
+
+```bash
+python scripts/prepare_data.py
+python scripts/build_master_table.py
+python scripts/compute_kpis.py
+python scripts/validate_data.py
+```
+
+Refer to `docs/HOW_TO_RUN.md` for the detailed execution instructions.
+
+## Business recommendation
+
+The analysis identifies opportunities to improve transaction engagement in states with relatively low transactions per registered user.
+
+The project includes an engagement-gap scenario in `outputs/recommendation_engagement_gap.csv`. This is an illustrative analytical scenario, not a guaranteed forecast.
+
+## Project deliverables
+
+- Python data processing and analysis scripts.
+- Interactive Streamlit dashboard.
+- Tableau Public dashboard.
+- KPI summaries and analytical CSV outputs.
+- Data validation report and results.
+- Project report PDF.
+- Dashboard screenshots.
+
+## Limitations
+
+- The dataset covers 2018 Q1 to 2022 Q4 and does not represent current PhonePe activity.
+- Aggregated user data has incomplete quarter coverage.
+- Some state-quarter transaction reconciliation differences remain.
+- The recommendation scenario is illustrative and depends on the assumptions documented in the analysis.
 
 ## Author
 
-Bavirisetty Hasini
+**Bavirisetty Hasini**  
+B.Sc. Computer Science Student  
+Data Analyst Internship Project — Sclaria  
+November 2026
