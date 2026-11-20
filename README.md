@@ -10,7 +10,7 @@ An end-to-end data analytics project exploring PhonePe Pulse digital payment tre
 - **Demo Video:** https://drive.google.com/file/d/10p_5JchI3xb719wCk5q_Z9W-8mvPFh86/view?usp=drive_link
 - **Tableau Public Dashboard:** https://public.tableau.com/app/profile/hasini.bavirisetty/viz/PhonePePulseDashboard_17947499605220/PhonePePulseDataDashboard
 - **GitHub Repository:** https://github.com/hasinibavirisetty15-cpu/PhonePe-Pulse-Data-Analysis
-
+- **Streamlit:** https://phonepe-pulse-data-analysis-vd4ner9je9wjqrrqronhbe.streamlit.app/?
 ## Project objectives
 
 - Analyze digital transaction trends across Indian states and districts.
