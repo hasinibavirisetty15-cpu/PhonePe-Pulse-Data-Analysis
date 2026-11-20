@@ -7,7 +7,7 @@
 An end-to-end data analytics project exploring PhonePe Pulse digital payment trends across India from 2018 Q1 to 2022 Q4. The project combines Python-based data processing, KPI analysis, data validation, an interactive Streamlit dashboard, and a Tableau Public visualization.
 
 ## Project links
-- **https://drive.google.com/file/d/10p_5JchI3xb719wCk5q_Z9W-8mvPFh86/view?usp=drive_link
+- **Demo Video:** https://drive.google.com/file/d/10p_5JchI3xb719wCk5q_Z9W-8mvPFh86/view?usp=drive_link
 - **Tableau Public Dashboard:** https://public.tableau.com/app/profile/hasini.bavirisetty/viz/PhonePePulseDashboard_17947499605220/PhonePePulseDataDashboard
 - **GitHub Repository:** https://github.com/hasinibavirisetty15-cpu/PhonePe-Pulse-Data-Analysis
 
